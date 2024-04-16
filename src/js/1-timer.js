@@ -3,10 +3,12 @@ import "flatpickr/dist/flatpickr.min.css";
 import iziToast from "izitoast";
 import "izitoast/dist/css/iziToast.min.css";
 
+// Функція для форматування чисел менше 10 додаванням ведучих нулів
 function addLeadingZero(value) {
   return value < 10 ? `0${value}` : value;
 }
 
+// Функція для перетворення мілісекунд в об'єкт з днями, годинами, хвилинами та секундами
 function convertMs(ms) {
   const second = 1000;
   const minute = second * 60;
@@ -21,6 +23,7 @@ function convertMs(ms) {
   return { days, hours, minutes, seconds };
 }
 
+// Початок роботи таймера
 function startTimer(endDate) {
   const timerInterval = setInterval(updateTimer, 1000);
 
@@ -32,8 +35,8 @@ function startTimer(endDate) {
       clearInterval(timerInterval);
       document.getElementById("start-btn").disabled = false;
       iziToast.success({
-        title: "Countdown Timer",
-        message: "Timer has ended!",
+        title: "Таймер",
+        message: "Час вийшов!",
         position: "topRight",
       });
       return;
@@ -48,6 +51,7 @@ function startTimer(endDate) {
   }
 }
 
+// Обробник події при виборі користувачем дати
 document.addEventListener("DOMContentLoaded", function () {
   const datetimePicker = flatpickr("#datetime-picker", {
     enableTime: true,
@@ -56,11 +60,12 @@ document.addEventListener("DOMContentLoaded", function () {
     onClose: function (selectedDates) {
       const selectedDate = selectedDates[0];
       const currentDate = new Date();
+
       if (selectedDate <= currentDate) {
         document.getElementById("start-btn").disabled = true;
         iziToast.error({
-          title: "Countdown Timer",
-          message: "Please choose a date in the future!",
+          title: "Таймер",
+          message: "Будь ласка, оберіть дату у майбутньому!",
           position: "topRight",
         });
       } else {
@@ -69,6 +74,7 @@ document.addEventListener("DOMContentLoaded", function () {
     },
   });
 
+  // Обробник події при натисканні кнопки "Старт"
   document.getElementById("start-btn").addEventListener("click", function () {
     const selectedDate = datetimePicker.selectedDates[0];
     startTimer(selectedDate.getTime());
