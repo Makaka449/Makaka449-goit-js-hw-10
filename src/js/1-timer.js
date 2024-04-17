@@ -58,19 +58,19 @@ document.addEventListener("DOMContentLoaded", function () {
       const currentDate = new Date();
 
       if (selectedDate <= currentDate) {
-        document.querySelector('[data-start]').disabled = true;
+        document.getElementById("start-btn").disabled = true;
         iziToast.error({
           title: "Таймер",
           message: "Будь ласка, оберіть дату у майбутньому!",
           position: "topRight",
         });
       } else {
-        document.getElementById("data-start").disabled = false;
+        document.getElementById("start-btn").disabled = false;
       }
     },
   });
 
-  document.querySelector('[data-start]').addEventListener("click", function () {
+  document.getElementById("start-btn").addEventListener("click", function () {
     const selectedDate = datetimePicker.selectedDates[0];
     startTimer(selectedDate.getTime());
     this.disabled = true;
