@@ -58,7 +58,7 @@ document.addEventListener("DOMContentLoaded", function () {
       const currentDate = new Date();
 
       if (selectedDate <= currentDate) {
-        document.getElementById("data-start").disabled = true;
+        document.querySelector('[data-start]').disabled = true;
         iziToast.error({
           title: "Таймер",
           message: "Будь ласка, оберіть дату у майбутньому!",
@@ -70,7 +70,7 @@ document.addEventListener("DOMContentLoaded", function () {
     },
   });
 
-  document.getElementById("data-start").addEventListener("click", function () {
+  document.querySelector('[data-start]').addEventListener("click", function () {
     const selectedDate = datetimePicker.selectedDates[0];
     startTimer(selectedDate.getTime());
     this.disabled = true;
