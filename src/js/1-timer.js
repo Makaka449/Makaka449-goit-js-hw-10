@@ -70,6 +70,8 @@ document.addEventListener("DOMContentLoaded", function () {
     },
   });
 
+  console.log(document.querySelector("[start-btn]"));
+
   document.querySelector("[start-btn]").addEventListener("click", function () {
     const selectedDate = datetimePicker.selectedDates[0];
     startTimer(selectedDate.getTime());
