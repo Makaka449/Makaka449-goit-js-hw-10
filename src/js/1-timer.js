@@ -30,7 +30,7 @@ function startTimer(endDate) {
 
     if (timeDifference <= 0) {
       clearInterval(timerInterval);
-      document.querySelector([start-btn]).disabled = false;
+      document.querySelector(["start-btn"]).disabled = false;
       iziToast.success({
         title: "Таймер",
         message: "Час вийшов!",
@@ -58,21 +58,21 @@ document.addEventListener("DOMContentLoaded", function () {
       const currentDate = new Date();
 
       if (selectedDate <= currentDate) {
-        document.querySelector([start-btn]).disabled = true;
+        document.querySelector(["start-btn"]).disabled = true;
         iziToast.error({
           title: "Таймер",
           message: "Будь ласка, оберіть дату у майбутньому!",
           position: "topRight",
         });
       } else {
-        document.querySelector([start-btn]).disabled = false;
+        document.querySelector(["start-btn"]).disabled = false;
       }
     },
   });
 
-  console.log(document.querySelector([start-btn]));
+  console.log(document.querySelector(["start-btn"]));
 
-  document.querySelector([start-btn]).addEventListener("click", function () {
+  document.querySelector(["start-btn"]).addEventListener("click", function () {
     const selectedDate = datetimePicker.selectedDates[0];
     startTimer(selectedDate.getTime());
     this.disabled = true;
