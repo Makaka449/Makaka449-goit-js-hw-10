@@ -30,7 +30,7 @@ function startTimer(endDate) {
 
     if (timeDifference <= 0) {
       clearInterval(timerInterval);
-      document.querySelector(["start-btn"]).disabled = false;
+      document.querySelector('[data-start]').disabled = false;
       iziToast.success({
         title: "Таймер",
         message: "Час вийшов!",
@@ -41,10 +41,10 @@ function startTimer(endDate) {
 
     const { days, hours, minutes, seconds } = convertMs(timeDifference);
 
-    document.getElementById("days").textContent = addLeadingZero(days);
-    document.getElementById("hours").textContent = addLeadingZero(hours);
-    document.getElementById("minutes").textContent = addLeadingZero(minutes);
-    document.getElementById("seconds").textContent = addLeadingZero(seconds);
+    document.querySelector('[data-days]').textContent = addLeadingZero(days);
+    document.querySelector('[data-hours]').textContent = addLeadingZero(hours);
+    document.querySelector('[data-minutes]').textContent = addLeadingZero(minutes);
+    document.querySelector('[data-seconds]').textContent = addLeadingZero(seconds);
   }
 }
 
@@ -58,21 +58,21 @@ document.addEventListener("DOMContentLoaded", function () {
       const currentDate = new Date();
 
       if (selectedDate <= currentDate) {
-        document.querySelector(["start-btn"]).disabled = true;
+        document.querySelector('[data-start]').disabled = true;
         iziToast.error({
           title: "Таймер",
           message: "Будь ласка, оберіть дату у майбутньому!",
           position: "topRight",
         });
       } else {
-        document.querySelector(["start-btn"]).disabled = false;
+        document.querySelector('[data-start]').disabled = false;
       }
     },
   });
 
-  console.log(document.querySelector(["start-btn"]));
+  console.log(document.querySelector('[data-start]'));
 
-  document.querySelector(["start-btn"]).addEventListener("click", function () {
+  document.querySelector('[data-start]').addEventListener("click", function () {
     const selectedDate = datetimePicker.selectedDates[0];
     startTimer(selectedDate.getTime());
     this.disabled = true;
