@@ -13,9 +13,9 @@ function createNotification(delay, state) {
   });
 }
 
-document.getElementById("notification-form").addEventListener("submit", function (event) {
+document.querySelector(".form").addEventListener("submit", function (event) {
   event.preventDefault();
-  const delay = parseInt(document.getElementById("delay-input").value);
+  const delay = parseInt(document.querySelector('input[name="delay"]').value);
   const state = document.querySelector('input[name="state"]:checked').value;
 
   createNotification(delay, state)
